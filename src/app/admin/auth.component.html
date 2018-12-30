@@ -1,0 +1,27 @@
+<div>
+	<admin-head></admin-head>
+
+	<div *ngIf = "errMsg != null" class = "bg-danger text-xs-center">
+		{{errMsg}}
+	</div>
+
+	<div class = "p-a-1">
+		<form novalidate #form = "ngForm" (ngSubmit) = "authenticate(form)">
+			<div class = "form-group">
+				<label>Логин</label>
+				<input name = "username" [(ngModel)] = "username" required class = "form-control" />
+			</div>
+
+			<div class = "form-group">
+				<label>Пароль</label>
+				<input type = "password" name = "password" [(ngModel)] = "password" required
+					class = "form-control" />
+			</div>
+
+			<div>
+				<button class = "btn btn-secondary" routerLink = "/">Назад</button>
+				<button class = "btn btn-primary" type = "submit">Вход</button>
+			</div>
+		</form>
+	</div>
+</div>

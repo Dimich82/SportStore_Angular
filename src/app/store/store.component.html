@@ -1,0 +1,62 @@
+<div class = "navbar navbar-inverse bg-inverse">
+	<store-head></store-head>
+	<cart-summary></cart-summary>
+</div>
+
+<div class = "col-xs-3 p-a-1">
+	<button class = "btn btn-block btn-outline-primary" (click) = "changeCategory()">
+		Домойки
+	</button>
+
+	<button *ngFor = "let cat of categories" class = "btn btn-block btn-outline-primary"
+		(click) = "changeCategory(cat)">
+		{{cat}}
+	</button>
+
+	<div class = "bg-info p-a-1">
+		Категории: {{categories.length}} шт.
+	</div>
+
+	<button class = "btn btn-block btn-danger" routerLink = "/admin">
+		Админка
+	</button>
+</div>
+
+<div class = "col-xs-9 p-a-1">
+	<div *ngFor = "let prod of products" class = "card card-outline-primary">
+		<img src = "{{prod.img}}" />
+
+		<h4 class = "card-header">
+			{{prod.name}}
+			<span class = "pull-xs-right tag tag-pill tag-primary">
+				{{prod.price | currency:"RUB":true:"2.2-2"}}
+			</span>
+		</h4>
+		<div class = "card-text p-a-1">
+			{{prod.description}}
+			<button class = "btn btn-success btn-sm pull-xs-right" (click) = "addProductToCart(prod)">
+				В корзину
+			</button>
+		</div>
+	</div>
+
+	<div class = "form-inline pull-xs-left m-r-1">
+		<select class = "form-control" [value] = "prodPerPage" (change) = "changePageSize($event.target.value)">
+			<option value = "3">3 позиции</option>
+			<option value = "4">4 позиции</option>
+			<option value = "5">5 позиций</option>
+			<option value = "6">6 позиций</option>
+		</select>
+	</div>
+
+	<div class = "btn-group pull-xs-right">
+		<button *counter = "let page of pageCount" (click) = "changePage(page)"
+			class="btn btn-outline-primary" [class.active] = "page == selectedPage">
+			{{page}}
+		</button>
+	</div>
+
+	<div>
+		Товары: {{products.length}} шт.
+	</div>
+</div>

@@ -1,0 +1,79 @@
+<div>
+	<div class = "navbar navbar-inverse bg-inverse">
+		<store-head></store-head>
+	</div>
+
+	<div *ngIf = "!orderSent">
+		<h2 class = "text-lg-center">Ваш заказичек</h2>
+	</div>
+
+	<div *ngIf = "orderSent">
+		<h2 class = "text-lg-center">Спасибочки за покупушку</h2>
+		<div class = "text-lg-center">
+			<button class = "btn btn-primary" routerLink = "/store">В магазинчек</button>
+		</div>
+	</div>
+
+	<div *ngIf = "!orderSent">
+		<form #form = "ngForm" novalidate (ngSubmit) = "submitOrder(form)" class = "m-a-1">
+			<div class = "form-group">
+				<label>Ваши ФИО</label>
+				<input #name = "ngModel" name = "name" [(ngModel)] = "order.name" required
+					class = "form-control" />
+				<span *ngIf = "submitted && name.invalid" class = "text-danger">
+					Введите имечко
+				</span>
+			</div>
+
+			<div class = "form-group">
+				<label>Страна</label>
+				<input #country = "ngModel" name = "country" [(ngModel)] = "order.country" required
+					class = "form-control" />
+				<span *ngIf = "submitted && country.invalid" class = "text-danger">
+					Введите странушку
+				</span>
+			</div>
+
+			<div class = "form-group">
+				<label>Город</label>
+				<input #city = "ngModel" name = "city" [(ngModel)] = "order.city" required
+					class = "form-control" />
+				<span *ngIf = "submitted && city.invalid" class = "text-danger">
+					Введите городочек
+				</span>
+			</div>
+
+			<div class = "form-group">
+				<label>Улица</label>
+				<input #street = "ngModel" name = "street" [(ngModel)] = "order.street" required
+					class = "form-control" />
+				<span *ngIf = "submitted && street.invalid" class = "text-danger">
+					Введите улочку
+				</span>
+			</div>
+
+			<div class = "form-group">
+				<label>Дом и квартира</label>
+				<input #home = "ngModel" name = "home" [(ngModel)] = "order.home" required
+					class = "form-control" />
+				<span *ngIf = "submitted && home.invalid" class = "text-danger">
+					Введите домик и квартирку
+				</span>
+			</div>
+
+			<div class = "form-group">
+				<label>Индекс почты</label>
+				<input #postind = "ngModel" name = "postind" [(ngModel)] = "order.postind" required
+					class = "form-control" />
+				<span *ngIf = "submitted && postind.invalid" class = "text-danger">
+					Введите индексюлю от почты
+				</span>
+			</div>
+
+			<div>
+				<button class = "btn btn-secondary" routerLink = "/cart">Назад</button>
+				<button class = "btn btn-primary" type = "submit">Заказ</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+.bg-info
+{
+	color: green !important;
+}
+
+span.pointer
+{
+	cursor: pointer;
+}
+
+span.pointer:hover
+{
+	color: red;
+}

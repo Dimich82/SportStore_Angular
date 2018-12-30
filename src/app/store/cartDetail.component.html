@@ -1,0 +1,57 @@
+<div>
+	<div class = "navbar navbar-inverse bg-inverse">
+		<store-head></store-head>
+	</div>
+
+	<h2 class = "text-xl-center">Ваша корзиночка</h2>
+
+	<div>
+		<div *ngIf = "cart.lines.length == 0" class = "font-weight-bold">
+			В данный момент в корзине ничего нет
+		</div>
+
+		<table *ngIf = "cart.lines.length > 0" class = "table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Название</th>
+					<th>Описание</th>
+					<th>Цена</th>
+					<th>Количество</th>
+					<th>Сумма</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor = "let ln of cart.lines">
+					<td>
+						<span (click) = "cart.removeLine(ln.product.id)" class = "pointer">X</span>
+					</td>
+					<td>{{ln.product.name}}</td>
+					<td>{{ln.product.description}}</td>
+					<td>{{ln.product.price}}</td>
+					<td>
+						<input type = "number" class = "form-control-sm" [value] = "ln.quantity"
+							   (change) = "cart.updateQuantity(ln.product, $event.target.value)" />
+					</td>
+					<td>{{ln.product.price * ln.quantity}}</td>
+				</tr>
+			</tbody>
+
+			<tfoot>
+				<tr>
+					<td colspan = "4" class = "text-xl-right font-weight-bold">Всего:</td>
+					<td>{{cart.itemCount}}</td>
+					<td>{{cart.cartPrice}}</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+	<div>
+		<button routerLink = "/store" class = "btn btn-primary">Назад</button>
+		<button routerLink = "/checkout" [disabled] = "cart.itemCount == 0" class = "btn btn-primary">
+			Заказ
+		</button>
+	</div>
+</div>

@@ -1,0 +1,6 @@
+<div class = "pull-xs-right">
+	<span>В корзине {{cart.itemCount}} элементов на сумму {{cart.cartPrice}} руб.</span>
+	<button class = "btn btn-sm bg-inverse" [disabled] = "cart.itemCount == 0" (click) = "goToCart()">
+		Заказ
+	</button>
+</div>
