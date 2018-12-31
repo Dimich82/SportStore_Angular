@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AdminHeaderComponent } from "./adminHeader.component";
+import { AuthService } from "../model/auth.service";
 
 @Component
 ({
@@ -16,14 +17,22 @@ export class AuthComponent
 	public password: string;
 	public errMsg: string;
 
-	constructor(private router: Router) {}
+	constructor(private router: Router, private auth: AuthService) {}
 
 	authenticate(form: NgForm)
 	{
 		if (form.valid)
 		{
 			this.errMsg = null;
-			this.router.navigateByUrl("/admin/main");
+			this.auth.authenticate(this.username, this.password)
+				.subscribe(responce => 
+				{
+					if (responce)
+						this.router.navigateByUrl("/admin/main");
+					else
+						this.errMsg = "Не прошли проверку";
+				})
+			
 		}
 		else
 			this.errMsg = "Хреновый ввод на форме";
