@@ -43,11 +43,41 @@ export class RestDataSource
 		return this.sendRequest(RequestMethod.Get, "products");
 	}
 
+	saveProduct(p: Product): Observable<Product>
+	{
+		return this.sendRequest(RequestMethod.Post, "products", p);
+	}
+
+	updateProduct(p: Product): Observable<Product>
+	{
+		return this.sendRequest(RequestMethod.Put, `products/${p.id}`, p, true);
+	}
+
+	deleteProduct(id: number): Observable<Product>
+	{
+		return this.sendRequest(RequestMethod.Delete, `products/${id}`, null, true);
+	}
+
+	getOrders(): Observable<Order[]>
+	{
+		return this.sendRequest(RequestMethod.Get, "orders", null, true);
+	}
+
 	saveOrder(order: Order): Observable<Order>
 	{
 		return this.sendRequest(RequestMethod.Post, "orders", order);
 	}
 
+	deleteOrder(id: number): Observable<Order[]>
+	{
+		return this.sendRequest(RequestMethod.Delete, `orders/${id}`, null, true);
+	}
+
+	updateOrder(o: Order): Observable<Order>
+	{
+		return this.sendRequest(RequestMethod.Put, `orders/${o.id}`, o, true);
+	}
+	
 	private sendRequest(verb: RequestMethod, url: string, body?: Product | Order, auth: boolean = false):
 		Observable<Product | Product[] | Order | Order[]>
 	{

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const APP_SECRET = "myappsecret";
 const USERNAME = "admin";
-const PASSWORD = "secret";
+const PASSWORD = "s";
 
 module.exports = function(req, res, next)
 {
@@ -38,6 +38,7 @@ module.exports = function(req, res, next)
 		}
 		res.statusCode = 401;
 		res.end();
+
 		return;
 	}
 	next();

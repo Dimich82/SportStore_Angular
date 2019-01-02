@@ -1,0 +1,26 @@
+<div class = "bg-info p-a-1">
+	<h3>Продукты url</h3>
+</div>
+
+<div>
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Название</th>
+				<th>Описание</th>
+				<th>Цена</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor = "let p of getProducts()">
+				<td>
+					<img src = "{{p.img}}" />
+				</td>
+				<td>{{p.name}}</td>
+				<td>{{p.description}}</td>
+				<td>{{p.price}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
