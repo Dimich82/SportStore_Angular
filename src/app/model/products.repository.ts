@@ -40,11 +40,11 @@ export class ProductRepository
 	saveProduct(p: Product)
 	{
 		if (p.id == null || p.id == 0)
-			this.dataSource.saveProduct(p).subscribe(pr => this.products.push);
+			this.dataSource.saveProduct(p).subscribe(pr => this.products.push(pr));
 		else
 			this.dataSource.updateProduct(p).subscribe(pr => 
 			{
-				this.products.splice(this.products.findIndex(pr1 => pr.id == p.id), 1, p);
+				this.products.splice(this.products.findIndex(pr1 => pr1.id == p.id), 1, p);
 			});
 	}
 

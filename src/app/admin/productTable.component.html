@@ -1,24 +1,40 @@
 <div class = "bg-info p-a-1">
-	<h3>Продукты url</h3>
+	<h3>Все продукты</h3>
 </div>
 
 <div>
-	<table>
+	<table class = "table table-sm table-striped">
 		<thead>
 			<tr>
+				<th>Категория</th>
 				<th></th>
 				<th>Название</th>
 				<th>Описание</th>
 				<th>Цена</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor = "let p of getProducts()">
+				<td>{{p.category}}</td>
 				<td><img src = "{{p.img}}" /></td>
 				<td>{{p.name}}</td>
 				<td>{{p.description}}</td>
 				<td>{{p.price}}</td>
+				<td>
+					<button class = "btn btn-warning btn-sm btn-block"
+						[routerLink] = "['/admin/main/products/edit', p.id]">
+						Редактировать
+					</button>
+					<button class = "btn btn-danger btn-sm btn-block" (click) = "deleteProduct(p.id)">
+						Удалить
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
+
+	<div class = "col-xs-3">
+		<button class = "btn btn-primary" routerLink = "/admin/main/products/create">Добавить</button>
+	</div>
 </div>
