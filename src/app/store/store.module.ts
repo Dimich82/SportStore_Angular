@@ -9,12 +9,13 @@ import { CartSummaryComponent } from "./cartSummary.component";
 import { CartDetailComponent } from "./cartDetail.component";
 import { CheckoutComponent } from "./checkout.component";
 import { HeaderComponent } from "./header.component";
+import { SliderComponent } from "./slider.component";
 
 @NgModule
 ({
 	imports: [ModelModule, BrowserModule, FormsModule, RouterModule],
 	declarations: [StoreComponent, CounterDirective, CartSummaryComponent, CartDetailComponent,
-				   CheckoutComponent, HeaderComponent],
+				   CheckoutComponent, HeaderComponent, SliderComponent],
 	exports: [StoreComponent, CartDetailComponent, CheckoutComponent]
 })
 

@@ -24,7 +24,9 @@
 
 <div class = "col-xs-9 p-a-1">
 	<div *ngFor = "let prod of products" class = "card card-outline-primary">
-		<img src = "{{prod.img}}" />
+		<img *ngIf = "!prod.isSlide" src = "{{prod.img}}" />
+
+		<slider *ngIf = "prod.isSlide"></slider>
 
 		<h4 class = "card-header">
 			{{prod.name}}
@@ -41,7 +43,8 @@
 	</div>
 
 	<div class = "form-inline pull-xs-left m-r-1">
-		<select class = "form-control" [value] = "prodPerPage" (change) = "changePageSize($event.target.value)">
+		<select class = "form-control" [value] = "prodPerPage"
+			(change) = "changePageSize($event.target.value)">
 			<option value = "3">3 позиции</option>
 			<option value = "4">4 позиции</option>
 			<option value = "5">5 позиций</option>

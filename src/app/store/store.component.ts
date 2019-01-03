@@ -4,6 +4,7 @@ import { Product } from "../model/product.model";
 import { ProductRepository } from "../model/products.repository";
 import { Cart } from "../model/cart.model";
 import { HeaderComponent } from "./header.component";
+import { SliderComponent } from "./slider.component";
 
 @Component
 ({
