@@ -20,7 +20,7 @@
 				<td><img src = "{{p.img}}" /></td>
 				<td>{{p.name}}</td>
 				<td>{{p.description}}</td>
-				<td>{{p.price}}</td>
+				<td>{{p.price | currency:"RUB":true:"2.2-2"}}</td>
 				<td>
 					<button class = "btn btn-warning btn-sm btn-block"
 						[routerLink] = "['/admin/main/products/edit', p.id]">

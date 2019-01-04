@@ -1,0 +1,49 @@
+<div class = "bg-info p-a-1">
+	<h3>Заказы</h3>
+</div>
+
+<div class = "form-check">
+	<label class = "form-check-label">
+		<input type = "checkbox" class = "form-check-input" [(ngModel)] = "includeShipped" />
+		Показать отправленные
+	</label>
+</div>
+
+<table class = "table table-sm">
+	<thead>
+		<tr>
+			<th>Кому</th><th>Куда</th><th colspan = "2">Корзинка</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngIf = "getOrders().length == 0">
+			<td colspan = "6">Нет ордеров</td>
+		</tr>
+		<ng-template ngFor let-o [ngForOf] = "getOrders()">
+			<tr>
+				<td>{{o.name}}</td>
+				<td>{{o.zip}}</td>
+				<th>Продукт</th><th>Количество</th><th>Сумма</th>
+				<td>
+					<button class = "btn btn-block btn-primary" [disabled] = "o.shipped"
+					(click) = "markShipped(o)">
+						Оправить
+					</button>
+					<button class = "btn btn-block btn-danger" (click) = "deleteOrder(o.id)">
+						Удалить
+					</button>
+				</td>
+			</tr>
+			<tr *ngFor = "let l of o.cart.lines">
+				<td colspan = "2"></td>
+				<td>{{l.product.name}}</td>
+				<td>{{l.quantity}}</td>
+				<td>{{l.quantity * l.product.price | currency:"RUB":true:"2.2-2"}}</td>
+			</tr>
+			<tr>
+				<td></td><td></td><th>Всего</th><th>{{o.cart.itemCount}}</th>
+				<th>{{o.cart.cartPrice | currency:"RUB":true:"2.2-2"}}</th><td></td>
+			</tr>
+		</ng-template>
+	</tbody>
+</table>

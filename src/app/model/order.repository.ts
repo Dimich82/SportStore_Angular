@@ -21,6 +21,14 @@ export class OrderRepository
 
 	getOrders(): Order[]
 	{
+		if (!this.loaded)
+			this.loadOrders();
+
+		this.orders.forEach(o =>
+		{
+			o.zip = o.postind + ' ' +  o.country + ' ' + o.city + ' ' + o.street + ' ' + o.home;
+		});
+		
 		return this.orders;
 	}
 

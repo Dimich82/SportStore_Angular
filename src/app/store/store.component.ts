@@ -35,6 +35,7 @@ export class StoreComponent
 
 	changeCategory(newCategory?: string)
 	{
+		this.selectedPage = 1;
 		this.selectedCat = newCategory;
 	}
 

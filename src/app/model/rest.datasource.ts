@@ -65,7 +65,7 @@ export class RestDataSource
 
 	saveOrder(order: Order): Observable<Order>
 	{
-		return this.sendRequest(RequestMethod.Post, "orders", order);
+		return this.sendRequest(RequestMethod.Post, "orders", order, true);
 	}
 
 	deleteOrder(id: number): Observable<Order[]>
